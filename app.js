@@ -29,7 +29,7 @@ const app = {
             name: 'Cuộc đời anh ba',
             singer: 'Cu Bể',
             path: 'music/cuocdoianhba.mp3',
-            image:'Image/cuabe.jpg'
+            image:'Image/cuabe2.jpg'
         },
         { 
             name: 'Khu tao sống',
@@ -199,6 +199,27 @@ const app = {
                 btnNext.click()
            }
         }
+
+        const listSongs = $$('.song')
+       for(let i = 0; i < listSongs.length; i++) {   
+                listSongs[i].onclick = function(){
+                app.currentIndex = i;
+                app.loadCurrentSong()
+                cdThumbAnimate.play()
+                app.isPLaying = true;
+                player.classList.add('playing');
+                audio.play()
+                listSongs[i].classList.add('active');
+                for(let j = 0; j < listSongs.length; j++)
+                {
+                    if(j != i){
+                        listSongs[j].classList.remove('active');
+                    }
+                }
+            }
+           
+         
+       }
           
     },
 
@@ -232,6 +253,8 @@ const app = {
         this.currentIndex = newIndex;
         this.loadCurrentSong()
     },
+
+
     start: function(){
         this.defineProp()
         this.render()
